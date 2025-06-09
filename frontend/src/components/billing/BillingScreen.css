@@ -1,0 +1,228 @@
+/* frontend/src/components/billing/BillingScreen.css */
+.billing-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.billing-header {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.bill-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.bill-info > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bill-info label {
+  font-weight: 500;
+  color: #666;
+}
+
+.bill-info input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.bill-number input {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.customer-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.customer-info input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.item-entry {
+  background-color: #f8f9fa;
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  position: relative;
+}
+
+.item-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.item-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.items-table-container {
+  flex: 1;
+  overflow: auto;
+  background-color: white;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items-table thead {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  z-index: 10;
+}
+
+.items-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.items-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.items-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.qty-input,
+.rate-input {
+  width: 80px;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s;
+}
+
+.remove-btn:hover {
+  color: #c82333;
+}
+
+.billing-footer {
+  background-color: white;
+  border-top: 2px solid #e0e0e0;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.shortcuts {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shortcut-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+}
+
+.shortcut-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.shortcut-btn.save {
+  background-color: #28a745;
+}
+
+.shortcut-btn.save:hover {
+  background-color: #218838;
+}
+
+.shortcut-btn.print {
+  background-color: #17a2b8;
+}
+
+.shortcut-btn.print:hover {
+  background-color: #138496;
+}
+
+.shortcut-btn.hold {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.shortcut-btn.hold:hover {
+  background-color: #e0a800;
+}
+
+.shortcut-btn.retrieve {
+  background-color: #6f42c1;
+}
+
+.shortcut-btn.retrieve:hover {
+  background-color: #5a32a3;
+}
+
+.totals {
+  min-width: 300px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.total-row.net {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  border-top: 2px solid #e0e0e0;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.discount-input {
+  width: 100px;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: right;
+}

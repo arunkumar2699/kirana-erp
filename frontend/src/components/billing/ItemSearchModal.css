@@ -1,0 +1,70 @@
+/* frontend/src/components/billing/ItemSearchModal.css */
+.item-search-modal {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+  margin-top: 4px;
+}
+
+.search-results {
+  padding: 0.5rem 0;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover,
+.search-result-item.selected {
+  background-color: #f0f4ff;
+}
+
+.item-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.item-code {
+  font-weight: 600;
+  color: #333;
+  min-width: 80px;
+}
+
+.item-name {
+  color: #555;
+}
+
+.item-size {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.item-details {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.item-stock {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #28a745;
+}
