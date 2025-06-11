@@ -1,6 +1,7 @@
 // frontend/src/components/billing/ItemSearchModal.jsx
 import React, { useEffect, useRef } from 'react';
 import './ItemSearchModal.css';
+import PropTypes from 'prop-types';
 
 const ItemSearchModal = ({ searchResults, onSelect, onClose }) => {
   const modalRef = useRef(null);
@@ -55,3 +56,10 @@ const ItemSearchModal = ({ searchResults, onSelect, onClose }) => {
 };
 
 export default ItemSearchModal;
+
+// At the bottom of the file
+ItemSearchModal.propTypes = {
+  searchResults: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
+};

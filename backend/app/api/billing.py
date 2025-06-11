@@ -26,6 +26,9 @@ async def create_bill(
         return billing_service.get_bill_response(bill)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Error creating bill: {str(e)}")
 
 @router.get("/retrieve/{bill_number}", response_model=BillResponse)
 async def retrieve_bill(

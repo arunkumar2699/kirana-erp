@@ -69,9 +69,9 @@ class BillResponse(BaseModel):
     bill_number: str
     bill_type: BillType
     customer_id: Optional[int]
-    customer_name: Optional[str]
+    customer_name: Optional[str] = None
     supplier_id: Optional[int]
-    supplier_name: Optional[str]
+    supplier_name: Optional[str] = None
     total_amount: float
     gst_amount: float
     discount_amount: float

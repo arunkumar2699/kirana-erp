@@ -17,25 +17,35 @@ const Dashboard = () => {
     fetchDashboardData();
   }, []);
 
-  const fetchDashboardData = async () => {
-    try {
-      // Fetch today's sales report
-      const salesResponse = await api.get('/reports/daily-sales');
-      const lowStockResponse = await api.get('/inventory/low-stock-alerts');
-      
-      setTodaysSummary(salesResponse.data);
-      setStats({
-        todaySales: salesResponse.data.summary.net_amount || 0,
-        totalBills: salesResponse.data.summary.total_bills || 0,
-        lowStockItems: lowStockResponse.data.length || 0,
-        pendingPayments: 0 // This would come from pending bills API
-      });
-    } catch (error) {
-      console.error('Failed to fetch dashboard data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+const fetchDashboardData = async () => {
+  try {
+    setLoading(true);
+    // Fetch today's sales report
+    const [salesResponse, lowStockResponse] = await Promise.all([
+      api.get('/reports/daily-sales').catch(() => ({ data: { summary: {} } })),
+      api.get('/inventory/low-stock-alerts').catch(() => ({ data: [] }))
+    ]);
+    
+    setTodaysSummary(salesResponse.data);
+    setStats({
+      todaySales: salesResponse.data.summary?.net_amount || 0,
+      totalBills: salesResponse.data.summary?.total_bills || 0,
+      lowStockItems: lowStockResponse.data?.length || 0,
+      pendingPayments: 0
+    });
+  } catch (error) {
+    console.error('Failed to fetch dashboard data:', error);
+    // Set default values on error
+    setStats({
+      todaySales: 0,
+      totalBills: 0,
+      lowStockItems: 0,
+      pendingPayments: 0
+    });
+  } finally {
+    setLoading(false);
+  }
+};
 
   const StatCard = ({ title, value, color, prefix = '' }) => (
     <div className={`stat-card ${color}`}>

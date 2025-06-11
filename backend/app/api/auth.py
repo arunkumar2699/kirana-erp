@@ -7,6 +7,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from typing import Optional
 
+from app.utils.security import get_current_active_user, check_permission
 from app.database import get_db
 from app.models import User
 from app.schemas import UserCreate, UserResponse, Token

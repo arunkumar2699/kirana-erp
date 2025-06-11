@@ -1,5 +1,5 @@
 // frontend/src/components/inventory/InventoryScreen.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { inventoryService } from '../../services/inventoryService';
 import LoadingSpinner from '../common/LoadingSpinner';
 import ErrorMessage from '../common/ErrorMessage';
@@ -13,12 +13,7 @@ const InventoryScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    fetchItems();
-    fetchCategories();
-  }, [selectedCategory]);
-
-  const fetchItems = async () => {
+  const fetchItems = useCallback(async () => {
     try {
       setLoading(true);
       const params = {
@@ -32,16 +27,21 @@ const InventoryScreen = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const data = await inventoryService.getCategories();
       setCategories(data);
     } catch (err) {
       console.error('Failed to fetch categories:', err);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchItems();
+    fetchCategories();
+  }, [fetchItems, fetchCategories]);
 
   const filteredItems = items.filter(item =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||

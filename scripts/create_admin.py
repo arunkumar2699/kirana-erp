@@ -48,8 +48,9 @@ def get_password_hash(password):
 def create_admin_user():
     # Database URL - using the backend directory
     db_path = backend_path / "kirana_erp.db"
-    DATABASE_URL = f"sqlite:///{db_path}"
-    
+    db_path.parent.mkdir(parents=True, exist_ok=True)  # Create directory if it doesn't exist
+    DATABASE_URL = f"sqlite:///{db_path.as_posix()}"  # Use as_posix() for cross-platform compatibility
+
     # Create engine and session
     engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

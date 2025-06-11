@@ -10,7 +10,13 @@ from app.config import settings as app_settings
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+        # Create default admin user if not exists
+        from scripts.create_admin import create_admin_user
+        create_admin_user()
+    except Exception as e:
+        print(f"Startup error: {e}")
     yield
     # Shutdown
 

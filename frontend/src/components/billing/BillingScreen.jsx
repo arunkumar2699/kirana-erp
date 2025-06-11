@@ -25,18 +25,36 @@ const BillingScreen = () => {
   const itemInputRef = useRef(null);
   const [billNumber, setBillNumber] = useState('');
 
-  useEffect(() => {
-    generateBillNumber();
-    setupKeyboardShortcuts();
-    
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, []);
+// At the top of the component, update the useEffect:
+useEffect(() => {
+  generateBillNumber();
+}, [billType]); // Re-generate when bill type changes
 
-  useEffect(() => {
-    calculateTotals();
-  }, [items]);
+useEffect(() => {
+  const handleKeyPress = (e) => {
+    // Function key shortcuts
+    if (e.key === 'F2') {
+      e.preventDefault();
+      saveBill();
+    } else if (e.key === 'F3') {
+      e.preventDefault();
+      printBill();
+    } else if (e.key === 'F4') {
+      e.preventDefault();
+      holdBill();
+    } else if (e.key === 'F5') {
+      e.preventDefault();
+      retrieveBill();
+    }
+  };
+
+  document.addEventListener('keydown', handleKeyPress);
+  
+  return () => {
+    document.removeEventListener('keydown', handleKeyPress);
+  };
+}, [items, totals]); // Add dependencies that are used in the functions
+
 
   const generateBillNumber = () => {
     // In real app, this would be generated from backend
